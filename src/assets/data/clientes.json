@@ -1,0 +1,44 @@
+{
+    "data":[
+        {
+            "id": "7864669621816",
+            "name": "Roberto Cavalli",
+            "birthDate": "2001-09-25",
+            "code": "A1B2C3",
+            "membership": "Mensual",
+            "status": "Activa"
+        },
+        {
+            "id": "1664669751816",
+            "name": "Lola Fuentes",
+            "birthDate": "2001-07-29",
+            "code": "A1B2C3",
+            "membership": "Mensual",
+            "status": "Activa"
+        },
+        {
+            "id": "1664669621786",
+            "name": "Raul Sol",
+            "birthDate": "2001-05-27",
+            "code": "A196C3",
+            "membership": "Mensual",
+            "status": "Activa"
+        },
+        {
+            "id": "1664689621816",
+            "name": "Jimena Flores",
+            "birthDate": "2001-02-29",
+            "code": "A1B593",
+            "membership": "Mensual",
+            "status": "Activa"
+        },
+        {
+            "id": "1664634621816",
+            "name": "Esmeralda Verde",
+            "birthDate": "2002-06-20",
+            "code": "A1B593",
+            "membership": "Mensual",
+            "status": "Activa"
+        }
+    ]
+}

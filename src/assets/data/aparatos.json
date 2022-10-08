@@ -1,0 +1,64 @@
+{
+    "data":[
+        {
+            "id": "1664529621816",
+            "name": "Maquina Smith",
+            "type": "Maquina",
+            "cantidad": "10"
+        },
+        {
+            "id": "1664529621986",
+            "name": "Barra libre",
+            "type": "Maquina",
+            "cantidad": "7"
+        },
+        {
+            "id": "1664527821816",
+            "name": "Mancuerna 15 libras",
+            "type": "Pesas libres",
+            "cantidad": "6"
+        },
+        {
+            "id": "1664989621816",
+            "name": "Mancuerna 10 libras",
+            "type": "Pesas libres",
+            "cantidad": "9"
+        },
+        {
+            "id": "1664529629316",
+            "name": "Mancuerna 5 libras",
+            "type": "Pesas libras",
+            "cantidad": "7"
+        },
+        {
+            "id": "1664939621816",
+            "name": "Banco inclinado",
+            "type": "Maquina",
+            "cantidad": "1"
+        },
+        {
+            "id": "1764525621816",
+            "name": "Banco plano",
+            "type": "Maquina",
+            "cantidad": "2"
+        },
+        {
+            "id": "1664529629116",
+            "name": "Banco declinado",
+            "type": "Maquina",
+            "cantidad": "2"
+        },
+        {
+            "id": "3664529621816",
+            "name": "Banco de abdominales",
+            "type": "Maquina",
+            "cantidad": "1"
+        },
+        {
+            "id": "3664529621816",
+            "name": "Abductor",
+            "type": "Maquina",
+            "cantidad": "1"
+        }
+    ]
+}

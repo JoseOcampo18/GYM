@@ -1,0 +1,70 @@
+{
+    "data":[
+        {
+            "id": "1664669621816",
+            "name": "Jimena Robles",
+            "birthDate": "2001-02-29",
+            "code": "A1B2C3"
+        },
+        {
+            "id": "7864669621816",
+            "name": "José Ocampo",
+            "birthDate": "2001-02-18",
+            "code": "A1F2C3"
+        },
+        {
+            "id": "1664669621886",
+            "name": "Brandon Tapia",
+            "birthDate": "2002-03-08",
+            "code": "A8B2K3"
+        },
+        {
+            "id": "1664669628916",
+            "name": "Daniel Preciado",
+            "birthDate": "2001-01-25",
+            "code": "A1J7C3"
+        },
+        {
+            "id": "1664669629316",
+            "name": "María José Ávila",
+            "birthDate": "2002-05-06",
+            "code": "H7U8C3"
+        },
+        {
+            "id": "88964669621816",
+            "name": "Juan Meza",
+            "birthDate": "2002-03-27",
+            "code": "U9P0C3"
+        },
+        {
+            "id": "1664696621816",
+            "name": "Carla Rodríguez",
+            "birthDate": "2001-09-24",
+            "code": "C1R2C3"
+        },
+        {
+            "id": "1696669621816",
+            "name": "Jolette Navarrete",
+            "birthDate": "1999-04-63",
+            "code": "A1YU2C3"
+        },
+        {
+            "id": "1664669628916",
+            "name": "Valentina Ávila",
+            "birthDate": "2007-02-20",
+            "code": "A1B2C3"
+        },
+        {
+            "id": "1689669621816",
+            "name": "Diego Gentner",
+            "birthDate": "2001-11-23",
+            "code": "A1PLC3"
+        },
+        {
+            "id": "1664669629616",
+            "name": "Madamma Bovary",
+            "birthDate": "1995-11-09",
+            "code": "A452C3"
+        }
+    ]
+}
