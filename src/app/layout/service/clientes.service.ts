@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Clientes } from '../api/clientes';
+import { environment } from 'src/environments/environment';
 
-const httpOptions ={
-  headers : new HttpHeaders ({'Content-Type':'application/json'})
+const httpOptions = {
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
 export class ClientesService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getClientes(){
-    return this.http.get<any>('../assets/data/clientes.json')
-            .toPromise()
-            .then(res => res.data as Clientes[])
-            .then(data => data);
+  getClientes() {
+    return this.http.get<Clientes[]>(`${environment.baseUrlAPI}/clients`);
   }
 }
 

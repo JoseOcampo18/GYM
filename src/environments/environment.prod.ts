@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  baserUrlAPI: 'https://api-sgsi.herokuapp.com',
 };

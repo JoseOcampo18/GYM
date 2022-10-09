@@ -7,24 +7,32 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { AparatosComponent } from './aparatos/aparatos.component';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
-  { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
-  { path: 'accessDenied', loadChildren: () => import('./access/access.module').then(m => m.AccessModule) },
+  { path: '', redirectTo: 'adminDashboard', pathMatch: 'full' },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./login/login.module').then((m) => m.LoginModule),
+  },
+  {
+    path: 'accessDenied',
+    loadChildren: () =>
+      import('./access/access.module').then((m) => m.AccessModule),
+  },
 
-  { 
-    path: 'adminDashboard', component: AppLayoutComponent,
+  {
+    path: 'adminDashboard',
+    component: AppLayoutComponent,
     children: [
       /* { path: 'vacio', component: MainComponent}, */
-      { path: '', component: ClientesComponent},
-      { path: 'empleados', component: EmpleadosComponent},
-      { path: 'aparatos', component: AparatosComponent},
-    ]
-  }
+      { path: '', component: ClientesComponent },
+      { path: 'empleados', component: EmpleadosComponent },
+      { path: 'aparatos', component: AparatosComponent },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
-
+export class AppRoutingModule {}
