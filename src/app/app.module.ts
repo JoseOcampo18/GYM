@@ -41,6 +41,7 @@ import { EmpleadosComponent } from './empleados/empleados.component';
 import { ClientesComponent } from './clientes/clientes.component';
 import { ClientesService } from './layout/service/clientes.service';
 import { AparatosComponent } from './aparatos/aparatos.component';
+import { CalendarModule } from "primeng/calendar";
 
 
 @NgModule({
@@ -85,7 +86,8 @@ import { AparatosComponent } from './aparatos/aparatos.component';
     ToggleButtonModule,
     MultiSelectModule,
     ProgressBarModule,
-    SliderModule
+    SliderModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

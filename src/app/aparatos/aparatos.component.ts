@@ -51,65 +51,13 @@ export class AparatosComponent implements OnInit {
   }
 
   openNew(){
-    this.aparato = {};
     this.submitted = false;
     this.aparatosDialog = true;
-  }
-
-  deleteSelectedAparatos() {
-    this.deleteAparatosDialog = true;
-  }
-
-  editAparato(aparato: Aparatos) {
-    this.aparato = { ...aparato };
-    this.aparatosDialog = true;
-  }
-
-  deleteAparato(aparato: Aparatos) {
-    this.deleteAparatoDialog = true;
-    this.aparato = { ...aparato };
-  }
-
-  confirmDeleteSelected() {
-    this.deleteAparatoDialog = false;
-    this.aparatos = this.aparatos.filter(val => !this.selectedAparatos.includes(val));
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Empleado Deleted', life: 3000 });
-    this.selectedAparatos = [];
-  }
-
-  confirmDelete() {
-    this.deleteAparatoDialog = false;
-    this.aparatos = this.aparatos.filter(val => val.id !== this.aparato.id);
-    this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Empleado Deleted', life: 3000 });
-    this.aparato = {};
   }
 
   hideDialog() {
     this.aparatosDialog = false;
     this.submitted = false;
-  }
-
-  saveAparato() {
-    this.submitted = true;
-
-    if (this.aparato.name?.trim()) {
-        if (this.aparato.id) {
-            // @ts-ignore
-            this.aparato.type = this.aparato.type.value ? this.aparato.type.value : this.aparato.type;
-            this.aparatos[this.findIndexById(this.aparato.id)] = this.aparato;
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Clientes Updated', life: 3000 });
-        } else {
-            this.aparato.id = this.createId();
-            // @ts-ignore
-            this.aparato.type = this.aparato.type.value;
-            this.aparatos.push(this.aparato);
-            this.messageService.add({ severity: 'success', summary: 'Successful', detail: 'Empleado Created', life: 3000 });
-        }
-
-        this.aparatos = [...this.aparatos];
-        this.aparatosDialog = false;
-        this.aparato = {};
-    }
   }
 
   findIndexById(id: number): number {
@@ -122,12 +70,6 @@ export class AparatosComponent implements OnInit {
     }
 
     return index;
-  }
-
-  createId(): number {
-    let id = Date.now();
-    
-    return id;
   }
 
   onGlobalFilter(table: Table, event: Event) {

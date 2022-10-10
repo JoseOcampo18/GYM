@@ -1,8 +1,10 @@
 export interface Clientes {
-  id?: number;
+  id?: string;
   code?: string;
   name?: string;
   birthDate?: string;
-  membership?: string;
-  status?: boolean;
+  memebership?: string;
+  status?: string;
+  contact_name?: string;
+  contact_phone?: string;
 }

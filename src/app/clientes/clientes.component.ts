@@ -21,7 +21,18 @@ export class ClientesComponent implements OnInit {
 
   clientes: Clientes[] = [];
 
-  //cliente: Clientes = {};
+  public response;
+
+  public cliente = {
+    "id" : "",
+    "name" : "",
+    "birthDate" : "",
+    "code" : "",
+    "memebership" : "",
+    "status" : "",
+    "contact_name" : "",
+    "contact_phone" : ""
+  };
 
   selectedClientes: Clientes[] = [];
 
@@ -45,8 +56,10 @@ export class ClientesComponent implements OnInit {
       { field: 'code', header: 'Código' },
       { field: 'name', header: 'Nombre' },
       { field: 'birthdate', header: 'Fecha de nacimiento' },
-      { field: 'membership', header: 'Membresia' },
+      { field: 'memebership', header: 'Membresia' },
       { field: 'status', header: 'Status' },
+      { field: 'contact_name', header: 'Contacto de emergencia' },
+      { field: 'contact_phone', header: 'Teléfono de contacto de emergencia' },
     ];
 
     this.memberships = [
@@ -57,27 +70,62 @@ export class ClientesComponent implements OnInit {
       { label: 'Anual', value: 'Anual' },
     ];
   }
+
   private getDataFromService() {
     this.clientesService.getClientes().subscribe((res: any) => {
       console.log(res);
       this.clientes = [...this.clientes, ...res];
     });
   }
+
+  addCliente() {
+    this.clientesService.addCliente(this.cliente).subscribe(
+      data => {this.response = data},
+      () => {
+        this.getDataFromService();
+      } 
+    )
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successful',
+      detail: 'Cliente creado',
+      life: 3000,
+    });
+  }  
+
   openNew() {
-    /* this.clientes = {}; */
     this.submitted = false;
     this.clientesDialog = true;
   }
 
-  deleteSelectedClientes() {
-    this.deleteClientesDialog = true;
-  }
-  /*
-  editCliente(cliente: Clientes) {
-    this.clientes = { ...cliente };
+  openEdit(cliente: Clientes) {
     this.clientesDialog = true;
   }
 
+  deleteCliente(cliente: Clientes) {
+    console.log('Delete', cliente);
+    this.deleteClienteDialog = true;
+  }
+
+  confirmDeleteCliente(cliente: Clientes) {
+    console.log('Delete', cliente);
+    this.clientesService.deleteCliente(this.cliente.id).subscribe(
+      data => {this.response = data},
+      () => {
+        this.getDataFromService();
+      } 
+    )
+  }
+    
+
+  deleteSelectedClientes() {
+    this.deleteClientesDialog = true;
+  }
+ 
+  
+ 
+   /*
   deleteCliente(cliente: Clientes) {
     this.deleteClienteDialog = true;
     this.clientes = { ...cliente };
@@ -108,12 +156,14 @@ export class ClientesComponent implements OnInit {
     });
     this.cliente = {};
   }
+  */
 
   hideDialog() {
     this.clientesDialog = false;
     this.submitted = false;
   }
 
+  /*
   saveCliente() {
     this.submitted = true;
 
@@ -179,7 +229,8 @@ export class ClientesComponent implements OnInit {
     return code;
   }
 
+  */
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
-  } */
+  }
 }

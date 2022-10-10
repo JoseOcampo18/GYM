@@ -7,7 +7,7 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { AparatosComponent } from './aparatos/aparatos.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'adminDashboard', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     loadChildren: () =>
