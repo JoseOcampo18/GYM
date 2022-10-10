@@ -71,6 +71,14 @@ export class ClientesComponent implements OnInit {
     ];
   }
 
+  /*   reload() {
+    this.router
+      .navigateByUrl('/RefreshComponent', { skipLocationChange: true })
+      .then(() => {
+        this.router.navigate(['Your actualComponent']);
+      });
+  } */
+
   private getDataFromService() {
     this.clientesService.getClientes().subscribe((res: any) => {
       console.log(res);
@@ -119,19 +127,18 @@ export class ClientesComponent implements OnInit {
         this.response = data;
       },
       () => {
-        this.getDataFromService();
+        location.reload();
       }
     );
   }
   confirmEditCliente(cliente: Clientes) {
+    //this.cliente.memebership = this.cliente.memebership?
     console.log('Edit confirm', cliente);
     this.clientesService.editCliente(cliente).subscribe(
       (data) => {
         this.response = data;
       },
-      () => {
-        this.getDataFromService();
-      }
+      () => {}
     );
   }
 
@@ -175,6 +182,8 @@ export class ClientesComponent implements OnInit {
   hideDialog() {
     this.clientesDialog = false;
     this.submitted = false;
+    this.editClienteDialog = false;
+    location.reload();
   }
 
   /*
@@ -184,9 +193,9 @@ export class ClientesComponent implements OnInit {
     if (this.cliente.name?.trim()) {
       if (this.cliente.id) {
         // @ts-ignore
-        this.cliente.membership = this.cliente.membership.value
-          ? this.cliente.membership.value
-          : this.cliente.membership;
+        this.cliente.memebership = this.cliente.memebership.value
+          ? this.cliente.memebership.value
+          : this.cliente.memebership;
         this.clientes[this.findIndexById(this.cliente.id)] = this.cliente;
         this.messageService.add({
           severity: 'success',
@@ -198,7 +207,7 @@ export class ClientesComponent implements OnInit {
         this.cliente.id = this.createId();
         this.cliente.code = this.createCode();
         // @ts-ignore
-        this.cliente.membership = this.cliente.membership.value;
+        this.cliente.memebership = this.cliente.memebership.value;
         this.cliente.status = 'Activa';
         this.clientes.push(this.cliente);
         this.messageService.add({
