@@ -123,7 +123,7 @@
                   'cliente-badge status-' +
                   (clientes.status ? clientes.status.toLowerCase() : '')
                 "
-                >{{ clientes.status }}</span
+                >{{ clientes.status ? "Activo" : "Inactivo" }}</span
               >
             </td>
             <td style="width: 14%; min-width: 10rem">
@@ -298,6 +298,7 @@
           label="Sí"
           (click)="confirmDeleteCliente(cliente)"
           (click)="deleteClienteDialog = false"
+          (click)="hideDialog()"
         ></button>
       </ng-template>
     </p-dialog>
@@ -316,8 +317,10 @@
             id="memebership"
             [options]="memberships"
             optionLabel="label"
+            optionValue="value"
             [(ngModel)]="cliente.memebership"
             placeholder="Selecciona una membresia"
+            dataKey="value"
           >
           </p-dropdown>
         </div>
