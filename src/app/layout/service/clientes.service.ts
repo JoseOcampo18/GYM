@@ -17,19 +17,27 @@ export class ClientesService {
     return this.http.get<Clientes[]>(`${environment.baseUrlAPI}/clients`);
   }
 
-  addCliente(cliente){
-    return this.http.post<Clientes[]>(`${environment.baseUrlAPI}/clients`, cliente);
+  addCliente(cliente) {
+    return this.http.post<Clientes[]>(
+      `${environment.baseUrlAPI}/clients`,
+      cliente
+    );
   }
 
-  editCliente(cliente){
-    return this.http.put<Clientes[]>(`${environment.baseUrlAPI}/clients/${cliente.id}`, cliente);
+  editCliente(cliente) {
+    return this.http.put<Clientes>(
+      `${environment.baseUrlAPI}/clients/${cliente.id}`,
+      cliente
+    );
   }
 
-  deleteCliente(id){
-    return this.http.delete<Clientes[]>(`${environment.baseUrlAPI}/clients/${id}`);
+  deleteCliente(id) {
+    return this.http.delete<Clientes[]>(
+      `${environment.baseUrlAPI}/clients/${id}`
+    );
   }
 
-  getCliente(id){
+  getCliente(id) {
     return this.http.get<Clientes[]>(`${environment.baseUrlAPI}/clients/${id}`);
   }
 }

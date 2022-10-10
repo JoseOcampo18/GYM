@@ -20,18 +20,18 @@ export class ClientesComponent implements OnInit {
   deleteClientesDialog: boolean = false;
 
   clientes: Clientes[] = [];
-
+  editClienteDialog: boolean = false;
   public response;
 
   public cliente = {
-    "id" : "",
-    "name" : "",
-    "birthDate" : "",
-    "code" : "",
-    "memebership" : "",
-    "status" : "",
-    "contact_name" : "",
-    "contact_phone" : ""
+    id: '',
+    name: '',
+    birthDate: '',
+    code: '',
+    memebership: '',
+    status: '',
+    contact_name: '',
+    contact_phone: '',
   };
 
   selectedClientes: Clientes[] = [];
@@ -80,11 +80,13 @@ export class ClientesComponent implements OnInit {
 
   addCliente() {
     this.clientesService.addCliente(this.cliente).subscribe(
-      data => {this.response = data},
+      (data) => {
+        this.response = data;
+      },
       () => {
         this.getDataFromService();
-      } 
-    )
+      }
+    );
 
     this.messageService.add({
       severity: 'success',
@@ -92,7 +94,7 @@ export class ClientesComponent implements OnInit {
       detail: 'Cliente creado',
       life: 3000,
     });
-  }  
+  }
 
   openNew() {
     this.submitted = false;
@@ -100,32 +102,44 @@ export class ClientesComponent implements OnInit {
   }
 
   openEdit(cliente: Clientes) {
-    this.clientesDialog = true;
+    this.editClienteDialog = true;
+    Object.assign(this.cliente, cliente);
   }
 
   deleteCliente(cliente: Clientes) {
     console.log('Delete', cliente);
     this.deleteClienteDialog = true;
+    Object.assign(this.cliente, cliente);
   }
 
   confirmDeleteCliente(cliente: Clientes) {
-    console.log('Delete', cliente);
-    this.clientesService.deleteCliente(this.cliente.id).subscribe(
-      data => {this.response = data},
+    console.log('Delete confirm', cliente);
+    this.clientesService.deleteCliente(cliente.id).subscribe(
+      (data) => {
+        this.response = data;
+      },
       () => {
         this.getDataFromService();
-      } 
-    )
+      }
+    );
   }
-    
+  confirmEditCliente(cliente: Clientes) {
+    console.log('Edit confirm', cliente);
+    this.clientesService.editCliente(cliente).subscribe(
+      (data) => {
+        this.response = data;
+      },
+      () => {
+        this.getDataFromService();
+      }
+    );
+  }
 
   deleteSelectedClientes() {
     this.deleteClientesDialog = true;
   }
- 
-  
- 
-   /*
+
+  /*
   deleteCliente(cliente: Clientes) {
     this.deleteClienteDialog = true;
     this.clientes = { ...cliente };

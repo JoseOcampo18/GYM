@@ -89,10 +89,12 @@
               Status <p-sortIcon field="status"></p-sortIcon>
             </th>
             <th pSortableColumn="contact_name">
-              Contacto de emergencia <p-sortIcon field="contact_name"></p-sortIcon>
+              Contacto de emergencia
+              <p-sortIcon field="contact_name"></p-sortIcon>
             </th>
             <th pSortableColumn="contact_phone">
-              Teléfono de emergenica <p-sortIcon field="contact_phone"></p-sortIcon>
+              Teléfono de emergenica
+              <p-sortIcon field="contact_phone"></p-sortIcon>
             </th>
             <th></th>
           </tr>
@@ -139,7 +141,7 @@
                   pRipple
                   icon="pi pi-pencil"
                   class="p-button-rounded p-button-success mr-2"
-                  (click) = "openEdit(clientes)"
+                  (click)="openEdit(clientes)"
                 ></button>
                 <button
                   pButton
@@ -156,31 +158,40 @@
     </div>
 
     <!--Agregar arreglado-->
-    <p-dialog 
-    [(visible)]="clientesDialog"
-    [style]="{width: '450px'}"
-    header = "Nuevo Cliente"
-    [modal]="true"
-    class="p-fluid">
-    <ng-template pTemplate="content">
-      <div class="field">
-        <label for="membership">Membresía</label>
-        <p-dropdown 
-          id="memebership" 
-          [options]="memberships" 
-          optionLabel="label" 
-          [(ngModel)]="cliente.memebership" 
-          placeholder="Selecciona una membresia">
-        </p-dropdown>
+    <p-dialog
+      [(visible)]="clientesDialog"
+      [style]="{ width: '450px' }"
+      header="Nuevo Cliente"
+      [modal]="true"
+      class="p-fluid"
+    >
+      <ng-template pTemplate="content">
+        <div class="field">
+          <label for="membership">Membresía</label>
+          <p-dropdown
+            id="memebership"
+            [options]="memberships"
+            optionLabel="label"
+            [(ngModel)]="cliente.memebership"
+            placeholder="Selecciona una membresia"
+          >
+          </p-dropdown>
         </div>
 
         <div class="field">
           <label for="name">Nombre del cliente</label>
-          <input type="text" 
-          pInputText id="name" 
-          [(ngModel)]="cliente.name"
-          required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.name}"/>
-          <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.name">Nombre es obligatorio.</small>
+          <input
+            type="text"
+            pInputText
+            id="name"
+            [(ngModel)]="cliente.name"
+            required
+            autofocus
+            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !cliente.name }"
+          />
+          <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.name"
+            >Nombre es obligatorio.</small
+          >
         </div>
 
         <!--
@@ -197,56 +208,208 @@
 
         <div class="field">
           <label for="contact">Nombre de contacto de emergencia</label>
-          <input type="text" 
-          pInputText id="contact_name" 
-          [(ngModel)]="cliente.contact_name"
-          required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.contact_name}"/>
-          <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.contact_name">Nombre de contacto es obligatorio.</small>
+          <input
+            type="text"
+            pInputText
+            id="contact_name"
+            [(ngModel)]="cliente.contact_name"
+            required
+            autofocus
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted && !cliente.contact_name
+            }"
+          />
+          <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !cliente.contact_name"
+            >Nombre de contacto es obligatorio.</small
+          >
         </div>
 
         <div class="field">
           <label for="contact">Número del contacto de emergencia</label>
-          <input type="number" 
-          pInputText id="contact_phone" 
-          [(ngModel)]="cliente.contact_phone"
-          required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !cliente.contact_phone}"/>
-          <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.contact_phone">Número del contacto es obligatorio.</small>
+          <input
+            type="number"
+            pInputText
+            id="contact_phone"
+            [(ngModel)]="cliente.contact_phone"
+            required
+            autofocus
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted && !cliente.contact_phone
+            }"
+          />
+          <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !cliente.contact_phone"
+            >Número del contacto es obligatorio.</small
+          >
         </div>
-    </ng-template>
-    <ng-template pTemplate="footer">
-      <button 
-        pButton 
-        pRipple 
-        label="Cancel" 
-        icon="pi pi-times" 
-        class="p-button-text" 
-        (click)="hideDialog()">
-      </button>
-      <button 
-        pButton 
-        pRipple 
-        label="Save" 
-        icon="pi pi-check"
-        class="p-button-text"
-        (click)="addCliente()"
-        (click)="hideDialog()">
-      </button>
-    </ng-template>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-text"
+          (click)="hideDialog()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Save"
+          icon="pi pi-check"
+          class="p-button-text"
+          (click)="addCliente()"
+          (click)="hideDialog()"
+        ></button>
+      </ng-template>
     </p-dialog>
 
-    
     <!--Confirmar delete-->
-    <p-dialog [(visible)]="deleteClienteDialog" header="Confirm" [modal]="true" [style]="{width:'450px'}">
+    <p-dialog
+      [(visible)]="deleteClienteDialog"
+      header="Confirm"
+      [modal]="true"
+      [style]="{ width: '450px' }"
+    >
       <div class="flex align-items-center justify-content-center">
-          <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
-          <span *ngIf="clientes">¿Estas seguro que deseas eliminar a <b>{{cliente.name}}</b>?</span>
+        <i class="pi pi-exclamation-triangle mr-3" style="font-size: 2rem"></i>
+        <span *ngIf="clientes"
+          >¿Estas seguro que deseas eliminar a <b>{{ cliente.name }}</b
+          >?</span
+        >
       </div>
       <ng-template pTemplate="footer">
-          <button pButton pRipple icon="pi pi-times" class="p-button-text" label="No" (click)="deleteClienteDialog = false"></button>
-          <button pButton pRipple icon="pi pi-check" class="p-button-text" label="Sí" (click)="confirmDeleteCliente(cliente)" (click)="deleteClienteDialog = false"></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-times"
+          class="p-button-text"
+          label="No"
+          (click)="deleteClienteDialog = false"
+        ></button>
+        <button
+          pButton
+          pRipple
+          icon="pi pi-check"
+          class="p-button-text"
+          label="Sí"
+          (click)="confirmDeleteCliente(cliente)"
+          (click)="deleteClienteDialog = false"
+        ></button>
       </ng-template>
-  </p-dialog>
+    </p-dialog>
+    <!--Editar arreglado-->
+    <p-dialog
+      [(visible)]="editClienteDialog"
+      [style]="{ width: '450px' }"
+      header="Nuevo Cliente"
+      [modal]="true"
+      class="p-fluid"
+    >
+      <ng-template pTemplate="content">
+        <div class="field">
+          <label for="membership">Membresía</label>
+          <p-dropdown
+            id="memebership"
+            [options]="memberships"
+            optionLabel="label"
+            [(ngModel)]="cliente.memebership"
+            placeholder="Selecciona una membresia"
+          >
+          </p-dropdown>
+        </div>
 
+        <div class="field">
+          <label for="name">Nombre del cliente</label>
+          <input
+            type="text"
+            pInputText
+            id="name"
+            [(ngModel)]="cliente.name"
+            required
+            autofocus
+            [ngClass]="{ 'ng-invalid ng-dirty': submitted && !cliente.name }"
+          />
+          <small class="ng-dirty ng-invalid" *ngIf="submitted && !cliente.name"
+            >Nombre es obligatorio.</small
+          >
+        </div>
+
+        <!--
+  <div class="field">
+    <label for="birthDate">Fecha de nacimiento</label>
+    <p-calendar 
+      [showIcon]="true" 
+      inputId="icon"
+      id="birthDate"
+      [(ngModel)]="cliente.birthDate">
+    </p-calendar>
+  </div>
+  -->
+
+        <div class="field">
+          <label for="contact">Nombre de contacto de emergencia</label>
+          <input
+            type="text"
+            pInputText
+            id="contact_name"
+            [(ngModel)]="cliente.contact_name"
+            required
+            autofocus
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted && !cliente.contact_name
+            }"
+          />
+          <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !cliente.contact_name"
+            >Nombre de contacto es obligatorio.</small
+          >
+        </div>
+
+        <div class="field">
+          <label for="contact">Número del contacto de emergencia</label>
+          <input
+            type="number"
+            pInputText
+            id="contact_phone"
+            [(ngModel)]="cliente.contact_phone"
+            required
+            autofocus
+            [ngClass]="{
+              'ng-invalid ng-dirty': submitted && !cliente.contact_phone
+            }"
+          />
+          <small
+            class="ng-dirty ng-invalid"
+            *ngIf="submitted && !cliente.contact_phone"
+            >Número del contacto es obligatorio.</small
+          >
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <button
+          pButton
+          pRipple
+          label="Cancel"
+          icon="pi pi-times"
+          class="p-button-text"
+          (click)="hideDialog()"
+        ></button>
+        <button
+          pButton
+          pRipple
+          label="Save"
+          icon="pi pi-check"
+          class="p-button-text"
+          (click)="confirmEditCliente(cliente)"
+          (click)="hideDialog()"
+        ></button>
+      </ng-template>
+    </p-dialog>
     <!--Agregar-->
     <!--   <p-dialog [(visible)]="clientesDialog" [style]="{width: '450px'}" header="Nuevo cliente" [modal]="true" class="p-fluid">
             <ng-template pTemplate="content">
