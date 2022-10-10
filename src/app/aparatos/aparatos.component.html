@@ -1,4 +1,3 @@
-<!--
 <div class="grid">
     <div class="col-12">
         <div class="card px-6 py-6">
@@ -30,7 +29,6 @@
                     <tr>
                         <th style="width: 3rem"><p-tableHeaderCheckbox></p-tableHeaderCheckbox></th>
                         <th pSortableColumn="name">Nombre <p-sortIcon field="name"></p-sortIcon></th>
-                        <th pSortableColumn="type">Tipo <p-sortIcon field="type"></p-sortIcon></th>
                         <th></th>
                     </tr>
                 </ng-template>
@@ -42,12 +40,6 @@
                         <td style="width:14%; min-width:10rem;">
                             <span class="p-column-title">Name</span>
                             {{aparatos.name}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Tipo</span>
-                            {{aparatos.type}}
-                        </td>
-                        <td style="width:14%; min-width:10rem;"><span class="p-column-title">Cantidad</span>
-                            {{aparatos.cantidad}}
                         </td>
                         <td>
                             <div class="flex">
@@ -67,16 +59,6 @@
                         <label for="name">Name</label>
                         <input type="text" pInputText id="name" [(ngModel)]="aparato.name" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !aparato.name}"/>
                         <small class="ng-dirty ng-invalid" *ngIf="submitted && !aparato.name">Nombre es obligatorio.</small>
-                    </div>
-                    <div class="field">
-                        <label for="status">Tipo</label>
-                        <p-dropdown id="type" [options]="types" optionLabel="label" [(ngModel)]="aparato.type" placeholder="Selecciona un tipo de aparato">
-                        </p-dropdown>
-                    </div>
-                    <div class="field">
-                        <label for="name">Cantidad</label>
-                        <input type="text" pInputText id="cantidad" [(ngModel)]="aparato.cantidad" required autofocus [ngClass]="{'ng-invalid ng-dirty' : submitted && !aparato.cantidad}"/>
-                        <small class="ng-dirty ng-invalid" *ngIf="submitted && !aparato.cantidad">Cantidad es obligatorio.</small>
                     </div>
             </ng-template>
 
@@ -109,4 +91,3 @@
         </p-dialog>
     </div>
 </div> 
--->

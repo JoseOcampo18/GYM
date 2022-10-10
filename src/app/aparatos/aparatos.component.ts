@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Aparatos } from '../layout/api/aparatos';
-import { ClientesService } from '../layout/service/clientes.service';
+import { AparatosService } from '../layout/service/aparatos.service';
 
 import { MessageService } from 'primeng/api';
 import { Table } from 'primeng/table';
-import { AparatosService } from '../layout/service/aparatos.service';
 
 @Component({
   selector: 'app-aparatos',
@@ -13,10 +12,13 @@ import { AparatosService } from '../layout/service/aparatos.service';
   providers: [AparatosService, MessageService]
 })
 export class AparatosComponent implements OnInit {
+  public response;
 
   aparatosDialog: boolean = false;
 
   deleteAparatoDialog: boolean = false;
+
+  editAparatoDialog: boolean = false;
 
   deleteAparatosDialog: boolean = false;
 
@@ -36,45 +38,94 @@ export class AparatosComponent implements OnInit {
 
   constructor(private aparatoService: AparatosService, private messageService: MessageService) { }
 
-  ngOnInit(){
-    this.aparatoService.getAparatos().then(data => this.aparatos = data);
+  ngOnInit() {
+    this.getDataFromService();
 
     this.cols = [
+      { field: 'code', header: 'Código' },
       { field: 'name', header: 'Nombre' },
-      { field: 'tipo', header: 'Tipo' },
-    ]; 
+      { field: 'birthdate', header: 'Fecha de nacimiento' },
+      { field: 'memebership', header: 'Membresia' },
+      { field: 'status', header: 'Status' },
+      { field: 'contact_name', header: 'Contacto de emergencia' },
+      { field: 'contact_phone', header: 'Teléfono de contacto de emergencia' },
+    ];
 
     this.types = [
-      { label: 'Pesas libres', value: 'Pesas libres'},
-      { label: 'Maquina', value: 'Maquina'}
-    ]
+      { label: 'Pesas libres', value: 'Pesas libres' },
+      { label: 'Máquina', value: 'Máquina' },
+    ];
   }
 
-  openNew(){
+  private getDataFromService() {
+    this.aparatoService.getAparatos().subscribe((res: any) => {
+      console.log(res);
+      this.aparatos = [...this.aparatos, ...res];
+    });
+  }
+
+  addAparato() {
+    this.aparatoService.addAparato(this.aparato).subscribe(
+      (data) => {
+        this.response = data;
+      },
+    );
+    this.getDataFromService();
+
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Successful',
+      detail: 'Cliente creado',
+      life: 3000,
+    });
+  }
+
+  openNew() {
     this.submitted = false;
     this.aparatosDialog = true;
   }
 
-  hideDialog() {
-    this.aparatosDialog = false;
-    this.submitted = false;
+  openEdit(aparato: Aparatos) {
+    this.editAparatoDialog = true;
+    Object.assign(this.aparato, aparato);
   }
 
-  findIndexById(id: number): number {
-    let index = -1;
-    for (let i = 0; i < this.aparatos.length; i++) {
-        if (this.aparatos[i].id === id) {
-            index = i;
-            break;
-        }
-    }
+  deleteAparato(aparato: Aparatos) {
+    console.log('Delete', aparato);
+    this.deleteAparatoDialog = true;
+    Object.assign(this.aparato, aparato);
+  }
 
-    return index;
+  confirmDeleteCliente(aparato: Aparatos) {
+    console.log('Delete confirm', aparato);
+    this.aparatoService.deleteAparato(aparato.id).subscribe(
+      (data) => {
+        this.response = data;
+      },
+    );
+    this.getDataFromService();
+  }
+  confirmEditAparato(aparato: Aparatos) {
+    console.log('Edit confirm', aparato);
+    this.aparatoService.editAparato(aparato).subscribe(
+      (data) => {
+        this.response = data;
+      }
+    );
+    this.getDataFromService();
+    this.aparatosDialog = false;
+  }
+
+  deleteSelectedAparatos() {
+    this.deleteAparatosDialog = true;
   }
 
   onGlobalFilter(table: Table, event: Event) {
     table.filterGlobal((event.target as HTMLInputElement).value, 'contains');
   }
 
+  hideDialog() {
+    this.aparatosDialog = false;
+    this.submitted = false;
+  }
 }
-
